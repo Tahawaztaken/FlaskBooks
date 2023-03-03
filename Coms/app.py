@@ -22,6 +22,7 @@ def testfn():
 data = list(range(1,300,3))
 print (data)
 
+
 @app.route('/getdata/<index_no>', methods=['GET','POST'])
 def data_get(index_no):
     
@@ -31,5 +32,16 @@ def data_get(index_no):
     
     else: # GET request
         return 'result: %s ;'%(data[int(index_no)])
+    
+@app.route('/form')
+def form_page():
+    return render_template('index2.html')
+    
+@app.route('/getFormData', methods=['GET','POST'])
+def submit():
+    name = request.form['name']
+    email = request.form['email']
+    b = f"Name = {name}\n Email = {email}"
+    return render_template('index.html', embed=b)
     
 app.run(debug=True)
