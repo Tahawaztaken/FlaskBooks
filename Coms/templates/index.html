@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Python Fetch Example</h1>
+    <p id='embed'>{{embed}}</p>
+    <input id="input"></input>
+    <button id="button" onclick="getData(document.getElementById('input').value)">Submit</button>
+    <p id="value"></p>
+    <script>
+        function getData(index){
+            console.log(index)
+        fetch(`/getdata/${index}`)
+          .then(function (response) {
+              return response.text();
+          }).then(function (text) {
+              document.getElementById('value').textContent = text
+          });
+        }
+        </script>
+</body>
+</html>
